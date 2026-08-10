@@ -1,0 +1,455 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.9s ease-out both;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.9s ease-out both;
+  }
+
+  .animate-pop {
+    animation: pop 0.35s ease-out both;
+  }
+}
+
+/* ================================
+   SHOP EASE — GLOBAL UI SYSTEM
+================================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease;
+}
+
+/* ================================
+   PAGE TRANSITION
+================================ */
+
+.page-enter {
+  animation: pageEnter 0.55s ease-out both;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================================
+   NAVBAR
+================================ */
+
+.navbar {
+  transition:
+    background-color 0.4s ease,
+    box-shadow 0.4s ease,
+    transform 0.3s ease;
+}
+
+.nav-link {
+  position: relative;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.nav-link:hover {
+  transform: translateY(-2px);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -7px;
+  width: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ================================
+   MOBILE NAVIGATION
+================================ */
+
+.mobile-menu {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 0.4s ease,
+    opacity 0.3s ease;
+}
+
+.mobile-menu > div {
+  overflow: hidden;
+}
+
+.mobile-menu.open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.mobile-link {
+  display: block;
+  padding: 12px 14px;
+  border-radius: 12px;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.mobile-link:hover {
+  background-color: #eff6ff;
+  color: #2563eb;
+  transform: translateX(5px);
+}
+
+/* ================================
+   HERO
+================================ */
+
+.hero-content {
+  animation: heroText 0.8s ease-out both;
+}
+
+.hero-image {
+  animation: heroImage 1s ease-out both;
+}
+
+@keyframes heroText {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroImage {
+  from {
+    opacity: 0;
+    transform: translateX(35px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.hero-image img {
+  transition:
+    transform 0.7s ease,
+    box-shadow 0.7s ease;
+}
+
+.hero-image:hover img {
+  transform: scale(1.025);
+}
+
+/* ================================
+   BUTTONS
+================================ */
+
+button,
+.btn {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+button:hover,
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+button:active,
+.btn:active {
+  transform: scale(0.96);
+}
+
+/* ================================
+   PRODUCT CARDS
+================================ */
+
+.product-card {
+  animation: cardEnter 0.6s ease-out both;
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    background-color 0.4s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+}
+
+.product-card img {
+  transition:
+    transform 0.5s ease,
+    filter 0.4s ease;
+}
+
+.product-card:hover img {
+  transform: scale(1.06);
+}
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================================
+   IMAGE
+================================ */
+
+img {
+  transition:
+    filter 0.4s ease,
+    opacity 0.4s ease;
+}
+
+/* ================================
+   INPUTS
+================================ */
+
+input,
+textarea,
+select {
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.4s ease,
+    color 0.4s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  transform: translateY(-1px);
+}
+
+/* ================================
+   TOAST
+================================ */
+
+.toast-enter {
+  animation: toastEnter 0.45s ease-out both;
+}
+
+@keyframes toastEnter {
+  from {
+    opacity: 0;
+    transform: translateX(120%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ================================
+   CART BADGE
+================================ */
+
+.cart-badge {
+  display: inline-flex;
+  transition:
+    transform 0.25s ease,
+    background-color 0.3s ease;
+}
+
+.cart-badge.bump {
+  animation: cartBump 0.45s ease;
+}
+
+@keyframes cartBump {
+  0% {
+    transform: scale(1);
+  }
+
+  40% {
+    transform: scale(1.3);
+  }
+
+  70% {
+    transform: scale(0.9);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ================================
+   WISHLIST HEART
+================================ */
+
+.wishlist-btn {
+  transition:
+    transform 0.25s ease,
+    color 0.25s ease;
+}
+
+.wishlist-btn:hover {
+  transform: scale(1.12);
+}
+
+.wishlist-btn:active {
+  transform: scale(0.9);
+}
+
+/* ================================
+   LOADING
+================================ */
+
+.skeleton {
+  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+
+  background-size: 200% 100%;
+
+  animation: skeletonLoading 1.5s infinite;
+}
+
+@keyframes skeletonLoading {
+  from {
+    background-position: 200% 0;
+  }
+
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* ================================
+   DARK MODE
+================================ */
+
+.dark {
+  color-scheme: dark;
+}
+
+.dark body {
+  background-color: #111827;
+  color: #f9fafb;
+}
+
+.dark .bg-white {
+  background-color: #1f2937;
+}
+
+.dark .bg-gray-50 {
+  background-color: #111827;
+}
+
+.dark .text-gray-600 {
+  color: #d1d5db;
+}
+
+.dark .text-gray-500 {
+  color: #9ca3af;
+}
+
+.dark .border {
+  border-color: #374151;
+}
+
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: #1f2937;
+  color: #f9fafb;
+}
+
+/* ================================
+   DARK MODE BUTTON
+================================ */
+
+.theme-toggle {
+  transition:
+    transform 0.4s ease,
+    background-color 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: rotate(15deg) scale(1.08);
+}
+
+.theme-toggle:active {
+  transform: rotate(-15deg) scale(0.95);
+}
+
+/* ================================
+   REDUCED MOTION
+================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 768px) {
+  .hero-content {
+    animation-duration: 0.6s;
+  }
+
+  .hero-image {
+    animation-duration: 0.7s;
+  }
+
+  .product-card:hover {
+    transform: translateY(-4px);
+  }
+
+  button:hover,
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+}
