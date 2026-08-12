@@ -15,66 +15,93 @@ export function Home() {
   let products = [];
 
   document.querySelector("#app").innerHTML = `
-    <div class="min-h-screen bg-gray-50 dark:bg-gray-950 dark:text-gray-100">
+    <div class="min-h-screen bg-slate-950 text-slate-100">
       ${Navbar(getCartCount())}
 
-      <section class="max-w-7xl mx-auto px-6 py-20 hero-content">
-        <div class="grid md:grid-cols-2 items-center gap-12">
-          <div class="space-y-6">
-            <span class="bg-blue-100 text-blue-600 dark:bg-slate-800 dark:text-sky-300 px-4 py-2 rounded-full text-sm font-semibold inline-flex items-center gap-2 animate-fade-in">
-              ✨ New Collection 2026
-            </span>
+      <main>
+        <section class="hero-section relative overflow-hidden pt-32 pb-20 sm:pt-36 lg:pt-40">
+          <div class="hero-orb hero-orb-one"></div>
+          <div class="hero-orb hero-orb-two"></div>
+          <div class="absolute inset-0 opacity-30 pointer-events-none" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,.12) 1px, transparent 0); background-size: 34px 34px;"></div>
 
-            <h1 class="mt-6 text-5xl md:text-6xl font-extrabold leading-tight animate-fade-in">
-              Shop Smarter,
-              <span class="text-blue-600">Live Better.</span>
-            </h1>
+          <div class="relative max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-[1.02fr_.98fr] items-center gap-12 lg:gap-8">
+              <div class="hero-copy max-w-2xl">
+                <span class="hero-pill">
+                  <span class="hero-pill-dot"></span>
+                  🔥 Summer deals are live
+                </span>
 
-            <p class="mt-6 text-gray-600 dark:text-slate-300 text-lg leading-8 animate-fade-in">
-              Discover premium products with amazing discounts. Fast delivery, secure payments, and the best shopping experience—all in one place.
-            </p>
+                <h1 class="mt-7 text-5xl sm:text-6xl lg:text-7xl font-black tracking-[-0.04em] leading-[.98]">
+                  Discover.<br />
+                  <span>Shop.</span><br />
+                  <span class="hero-gradient-text">Love it.</span>
+                </h1>
 
-            <div class="mt-8 flex flex-col sm:flex-row gap-4 animate-fade-in">
-              <button
-                onclick="location.hash='checkout'"
-                class="bg-blue-600 hover:bg-blue-700 transition transform hover:-translate-y-0.5 text-white px-6 py-3 rounded-lg font-semibold"
-              >
-                Shop Now
-              </button>
-              <button
-                onclick="location.hash='cart'"
-                class="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition transform hover:-translate-y-0.5 px-6 py-3 rounded-lg font-semibold"
-              >
-                View Cart
-              </button>
+                <p class="mt-7 text-lg sm:text-xl leading-8 text-slate-300 max-w-xl">
+                  Find products you’ll love at prices you’ll appreciate. Fast delivery, secure payments, and a shopping experience built around you.
+                </p>
+
+                <div class="mt-9 flex flex-col sm:flex-row gap-4">
+                  <button onclick="location.hash='products'" class="hero-primary-btn">
+                    Shop Now <span>→</span>
+                  </button>
+                  <button onclick="document.querySelector('#product-grid')?.scrollIntoView({behavior:'smooth'})" class="hero-secondary-btn">
+                    Explore Products
+                  </button>
+                </div>
+
+                <div class="mt-10 grid sm:grid-cols-3 gap-4 max-w-2xl">
+                  <div class="hero-trust-card"><span>🚚</span><div><strong>Free Shipping</strong><small>Orders over ₦20,000</small></div></div>
+                  <div class="hero-trust-card"><span>🛡️</span><div><strong>Secure Payment</strong><small>100% protected</small></div></div>
+                  <div class="hero-trust-card"><span>↩️</span><div><strong>Easy Returns</strong><small>30-day returns</small></div></div>
+                </div>
+              </div>
+
+              <div class="hero-visual relative min-h-[430px] lg:min-h-[540px] flex items-center justify-center">
+                <div class="hero-ring hero-ring-one"></div>
+                <div class="hero-ring hero-ring-two"></div>
+                <div class="hero-glow"></div>
+                <div class="hero-platform"></div>
+
+                <div class="hero-floating-card hero-card-top">
+                  <span class="hero-mini-icon">⚡</span>
+                  <div><strong>Hot Deals</strong><small>Up to 40% off</small></div>
+                </div>
+
+                <div class="hero-product-stage">
+                  <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1000&q=90" alt="Premium headphones" class="hero-product-image" />
+                </div>
+
+                <div class="hero-floating-card hero-card-bottom">
+                  <span class="hero-mini-icon">✓</span>
+                  <div><strong>Trusted Shopping</strong><small>Quality products</small></div>
+                </div>
+              </div>
             </div>
           </div>
+        </section>
 
-          <div class="hero-image flex justify-center">
-            <img
-              src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=700"
-              alt="Shopping Product"
-              class="rounded-3xl shadow-2xl animate-slide-up"
-            />
+        <section id="products" class="relative max-w-7xl mx-auto px-6 py-16">
+          ${ProductControls()}
+
+          <div class="flex items-end justify-between gap-4 mb-10">
+            <div>
+              <span class="section-kicker">CURATED FOR YOU</span>
+              <h2 class="text-4xl sm:text-5xl font-black tracking-tight mt-2">Featured Products</h2>
+              <p class="text-slate-400 mt-3">Handpicked products worth adding to your cart.</p>
+            </div>
+            <span class="hidden sm:block text-violet-400 font-semibold">View all →</span>
           </div>
-        </div>
-      </section>
 
-      <section class="max-w-7xl mx-auto px-6 mt-10">
-        ${ProductControls()}
-
-        <div class="text-center mb-12">
-          <h2 class="text-4xl font-bold">Featured Products</h2>
-          <p class="text-gray-600 mt-3">Discover our most popular products.</p>
-        </div>
-
-        ${ProductGrid(products)}
-        <div id="pagination-container"></div>
-      </section>
+          ${ProductGrid(products)}
+          <div id="pagination-container"></div>
+        </section>
+      </main>
     </div>
   `;
 
-  const cartButton = document.querySelector("#cart-button");
+  const cartButton = document.querySelector(".cart-nav-button");
   const searchInput = document.querySelector("#search");
   const categorySelect = document.querySelector("#category");
   const sortSelect = document.querySelector("#sort");
@@ -105,43 +132,29 @@ export function Home() {
       const matchesKeyword = product.name.toLowerCase().includes(keyword);
       const matchesCategory =
         selectedCategory === "all" || product.category === selectedCategory;
-
       return matchesKeyword && matchesCategory;
     });
 
     const sortedProducts = [...filteredProducts];
-
-    if (sortValue === "low") {
-      sortedProducts.sort((a, b) => a.price - b.price);
-    } else if (sortValue === "high") {
-      sortedProducts.sort((a, b) => b.price - a.price);
-    } else if (sortValue === "az") {
-      sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
-    }
-
+    if (sortValue === "low") sortedProducts.sort((a, b) => a.price - b.price);
+    else if (sortValue === "high") sortedProducts.sort((a, b) => b.price - a.price);
+    else if (sortValue === "az") sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
     return sortedProducts;
   }
 
   function getCurrentProducts() {
     const filtered = getFilteredProducts();
     const start = (currentPage - 1) * PRODUCTS_PER_PAGE;
-    const end = start + PRODUCTS_PER_PAGE;
-    return filtered.slice(start, end);
+    return filtered.slice(start, start + PRODUCTS_PER_PAGE);
   }
 
   function renderPagination() {
-    const totalPages = Math.max(
-      1,
-      Math.ceil(getFilteredProducts().length / PRODUCTS_PER_PAGE),
-    );
-    document.querySelector("#pagination-container").innerHTML = Pagination(
-      currentPage,
-      totalPages,
-    );
+    const totalPages = Math.max(1, Math.ceil(getFilteredProducts().length / PRODUCTS_PER_PAGE));
+    document.querySelector("#pagination-container").innerHTML = Pagination(currentPage, totalPages);
     bindPaginationButtons();
   }
 
-  async function updateProducts() {
+  function updateProducts() {
     productGrid.innerHTML = getCurrentProducts().map(ProductCard).join("");
     bindAddCartButtons();
     bindWishlistButtons();
@@ -153,7 +166,6 @@ export function Home() {
     document.querySelectorAll(".product-card").forEach((card) => {
       card.addEventListener("click", (event) => {
         if (event.target.closest(".add-cart")) return;
-
         location.hash = `#product/${card.dataset.id}`;
       });
     });
@@ -163,9 +175,12 @@ export function Home() {
     document.querySelectorAll(".add-cart").forEach((button) => {
       button.addEventListener("click", async () => {
         await addToCart(button.dataset.id);
-        cartButton.textContent = `🛒 Cart (${getCartCount()})`;
-        cartButton.classList.add("animate-pop");
-        setTimeout(() => cartButton.classList.remove("animate-pop"), 350);
+        if (cartButton) {
+          const badge = cartButton.querySelector(".cart-badge");
+          if (badge) badge.textContent = getCartCount();
+          cartButton.classList.add("animate-pop");
+          setTimeout(() => cartButton.classList.remove("animate-pop"), 350);
+        }
         showToast("✅ Added to Cart");
       });
     });
@@ -185,21 +200,18 @@ export function Home() {
   }
 
   function bindPaginationButtons() {
-    document
-      .querySelectorAll("#pagination-container button[data-page]")
-      .forEach((button) => {
-        button.addEventListener("click", () => {
-          currentPage = Number(button.dataset.page);
-          updateProducts();
-        });
+    document.querySelectorAll("#pagination-container button[data-page]").forEach((button) => {
+      button.addEventListener("click", () => {
+        currentPage = Number(button.dataset.page);
+        updateProducts();
+        document.querySelector("#products")?.scrollIntoView({ behavior: "smooth" });
       });
+    });
 
     const nextButton = document.querySelector("#next-page");
     if (nextButton) {
       nextButton.addEventListener("click", () => {
-        const totalPages = Math.ceil(
-          getFilteredProducts().length / PRODUCTS_PER_PAGE,
-        );
+        const totalPages = Math.ceil(getFilteredProducts().length / PRODUCTS_PER_PAGE);
         if (currentPage < totalPages) {
           currentPage += 1;
           updateProducts();
@@ -208,18 +220,9 @@ export function Home() {
     }
   }
 
-  searchInput.addEventListener("input", () => {
-    currentPage = 1;
-    updateProducts();
-  });
-  categorySelect.addEventListener("change", () => {
-    currentPage = 1;
-    updateProducts();
-  });
-  sortSelect.addEventListener("change", () => {
-    currentPage = 1;
-    updateProducts();
-  });
+  searchInput.addEventListener("input", () => { currentPage = 1; updateProducts(); });
+  categorySelect.addEventListener("change", () => { currentPage = 1; updateProducts(); });
+  sortSelect.addEventListener("change", () => { currentPage = 1; updateProducts(); });
 
   initializeProducts();
 }
