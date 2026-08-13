@@ -3,10 +3,8 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   root: "shopease",
-  base: "./",
+  plugins: [tailwindcss()],
   build: {
     outDir: "../dist",
-    emptyOutDir: true,
   },
-  plugins: [tailwindcss()],
 });
