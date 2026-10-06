@@ -1,4 +1,5 @@
 import { getCart, saveCart } from "../utils/cart";
+import { icon } from "../utils/icons";
 
 export function Cart() {
   const cart = getCart();
@@ -50,11 +51,11 @@ export function Cart() {
             href="#"
             class="text-blue-600 hover:underline"
           >
-            ← Continue Shopping
+            ${icon("arrowLeft", "w-4 h-4")} Continue Shopping
           </a>
 
           <h1 class="text-4xl font-bold mt-5">
-            Shopping Cart 🛒
+            Shopping Cart
           </h1>
 
           <p class="text-gray-500 mt-2">
@@ -106,7 +107,7 @@ export function Cart() {
                       data-id="${item.id}"
                       class="remove-item text-red-500 hover:text-red-700 transition"
                     >
-                      🗑️
+                      ${icon("trash", "w-5 h-5")}
                     </button>
 
                   </div>
@@ -192,7 +193,7 @@ export function Cart() {
                 onclick="location.hash='checkout'"
                 class="w-full mt-7 bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-semibold transition"
               >
-                Proceed to Checkout →
+                Proceed to Checkout ${icon("arrowRight", "w-4 h-4")}
               </button>
 
 
