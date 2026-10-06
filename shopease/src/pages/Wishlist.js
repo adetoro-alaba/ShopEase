@@ -1,6 +1,7 @@
 import { getWishlist, removeFromWishlist } from "../utils/wishlist";
 import { getCartCount } from "../utils/cart";
 import { Navbar } from "../components/Navbar";
+import { icon } from "../utils/icons";
 
 export function WishlistPage() {
   const wishlist = getWishlist();
@@ -11,7 +12,7 @@ export function WishlistPage() {
         ${Navbar(getCartCount())}
         <div class="flex items-center justify-center px-6 py-16">
           <div class="text-center">
-            <div class="text-7xl">🤍</div>
+            <div class="text-7xl text-violet-500">${icon("heart", "w-16 h-16 mx-auto")}</div>
             <h1 class="text-3xl font-bold mt-5">Your Wishlist is Empty</h1>
             <p class="text-gray-500 mt-3">Save products you love and find them here later.</p>
             <a href="#" class="inline-block mt-6 bg-blue-600 text-white px-6 py-3 rounded-xl">Start Shopping</a>
@@ -59,14 +60,14 @@ export function WishlistPage() {
                 href="#product/${product.id}"
                 class="inline-flex items-center justify-center rounded-xl bg-blue-600 px-3 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
               >
-                View Details →
+                View Details ${icon("arrowRight", "w-4 h-4")}
               </a>
 
               <button
                 data-id="${product.id}"
                 class="remove-wishlist rounded-xl border border-red-200 bg-red-50 px-3 py-2.5 text-sm font-semibold text-red-600 transition hover:bg-red-100 dark:border-red-500/30 dark:bg-red-500/10 dark:text-red-300"
               >
-                Remove from Wishlist
+                ${icon("trash", "w-4 h-4")} Remove from Wishlist
               </button>
             </div>
           </div>
@@ -80,7 +81,7 @@ export function WishlistPage() {
       ${Navbar(getCartCount())}
       <div class="p-8">
         <div class="mb-10">
-          <h1 class="text-4xl font-bold">My Wishlist ❤️</h1>
+          <h1 class="text-4xl font-bold">My Wishlist</h1>
           <p class="text-gray-500 mt-2">Products you've saved for later.</p>
         </div>
         <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
