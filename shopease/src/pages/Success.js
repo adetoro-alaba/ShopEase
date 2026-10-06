@@ -1,3 +1,5 @@
+import { icon } from "../utils/icons";
+
 export function Success() {
   const order = JSON.parse(localStorage.getItem("lastOrder"));
 
@@ -13,7 +15,7 @@ export function Success() {
       <div class="bg-white rounded-3xl shadow-xl max-w-lg w-full p-8 md:p-10 text-center">
 
         <div class="text-7xl mb-6">
-          🎉
+          ${icon("check","w-16 h-16 mx-auto")}
         </div>
 
         <h1 class="text-4xl font-bold">
