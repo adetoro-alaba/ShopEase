@@ -7,6 +7,7 @@ import { ProductCard } from "../components/ProductCard";
 import { Pagination } from "../components/Pagination";
 import { Navbar } from "../components/Navbar";
 import { showToast } from "../components/Toast";
+import { icon } from "../utils/icons";
 
 const PRODUCTS_PER_PAGE = 8;
 let currentPage = 1;
@@ -29,7 +30,7 @@ export function Home() {
               <div class="hero-copy max-w-2xl">
                 <span class="hero-pill">
                   <span class="hero-pill-dot"></span>
-                  🔥 Summer deals are live
+                  ${icon("zap", "w-4 h-4")} Summer deals are live
                 </span>
 
                 <h1 class="mt-7 text-5xl sm:text-6xl lg:text-7xl font-black tracking-[-0.04em] leading-[.98]">
@@ -44,7 +45,7 @@ export function Home() {
 
                 <div class="mt-9 flex flex-col sm:flex-row gap-4">
                   <button onclick="location.hash='products'" class="hero-primary-btn">
-                    Shop Now <span>→</span>
+                    Shop Now ${icon("arrowRight", "w-4 h-4")}
                   </button>
                   <button onclick="document.querySelector('#product-grid')?.scrollIntoView({behavior:'smooth'})" class="hero-secondary-btn">
                     Explore Products
@@ -52,9 +53,9 @@ export function Home() {
                 </div>
 
                 <div class="mt-10 grid sm:grid-cols-3 gap-4 max-w-2xl">
-                  <div class="hero-trust-card"><span>🚚</span><div><strong>Free Shipping</strong><small>Orders over ₦20,000</small></div></div>
-                  <div class="hero-trust-card"><span>🛡️</span><div><strong>Secure Payment</strong><small>100% protected</small></div></div>
-                  <div class="hero-trust-card"><span>↩️</span><div><strong>Easy Returns</strong><small>30-day returns</small></div></div>
+                  <div class="hero-trust-card"><span>${icon("truck", "w-5 h-5")}</span><div><strong>Free Shipping</strong><small>Orders over ₦20,000</small></div></div>
+                  <div class="hero-trust-card"><span>${icon("shield", "w-5 h-5")}</span><div><strong>Secure Payment</strong><small>100% protected</small></div></div>
+                  <div class="hero-trust-card"><span>${icon("rotate", "w-5 h-5")}</span><div><strong>Easy Returns</strong><small>30-day returns</small></div></div>
                 </div>
               </div>
 
@@ -65,7 +66,7 @@ export function Home() {
                 <div class="hero-platform"></div>
 
                 <div class="hero-floating-card hero-card-top">
-                  <span class="hero-mini-icon">⚡</span>
+                  <span class="hero-mini-icon">${icon("zap", "w-5 h-5")}</span>
                   <div><strong>Hot Deals</strong><small>Up to 40% off</small></div>
                 </div>
 
@@ -74,7 +75,7 @@ export function Home() {
                 </div>
 
                 <div class="hero-floating-card hero-card-bottom">
-                  <span class="hero-mini-icon">✓</span>
+                  <span class="hero-mini-icon">${icon("check", "w-5 h-5")}</span>
                   <div><strong>Trusted Shopping</strong><small>Quality products</small></div>
                 </div>
               </div>
@@ -181,7 +182,7 @@ export function Home() {
           cartButton.classList.add("animate-pop");
           setTimeout(() => cartButton.classList.remove("animate-pop"), 350);
         }
-        showToast("✅ Added to Cart");
+        showToast("Added to cart");
       });
     });
   }
@@ -192,7 +193,7 @@ export function Home() {
         event.stopPropagation();
         const added = await addToWishlist(button.dataset.id);
         showToast(
-          added ? "❤️ Added to Wishlist" : "❤️ Already in Wishlist",
+          added ? "Added to wishlist" : "Already in wishlist",
           added ? "success" : "error",
         );
       });
