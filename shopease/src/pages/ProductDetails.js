@@ -3,6 +3,7 @@ import { addToCart, getCartCount } from "../utils/cart";
 import { addToWishlist } from "../utils/wishlist";
 import { showToast } from "../components/Toast";
 import { Navbar } from "../components/Navbar";
+import { icon } from "../utils/icons";
 
 export async function ProductDetails(productId) {
   const product = await getProductById(Number(productId));
@@ -45,7 +46,7 @@ export async function ProductDetails(productId) {
               </h1>
 
               <p class="mt-4 text-yellow-500 text-lg">
-                ⭐⭐⭐⭐⭐ (${product.rating})
+                ${icon("star","w-5 h-5 fill-current")} ${Number(product.rating).toFixed(1)}
               </p>
 
               <h2 class="text-4xl font-bold text-blue-600 mt-5">
@@ -62,13 +63,13 @@ export async function ProductDetails(productId) {
                 id="add-to-cart-button"
                 class="bg-blue-600 text-white px-8 py-4 rounded-xl w-full hover:bg-blue-700 transition"
               >
-                🛒 Add to Cart
+                ${icon("cart","w-5 h-5")} Add to Cart
               </button>
               <button
                 id="add-to-wishlist-button"
                 class="border border-red-500 text-red-500 px-8 py-4 rounded-xl w-full hover:bg-red-500 hover:text-white transition"
               >
-                ❤️ Add to Wishlist
+                ${icon("heart","w-5 h-5")} Add to Wishlist
               </button>
               <button
                 onclick="location.hash=''"
@@ -87,7 +88,7 @@ export async function ProductDetails(productId) {
     .querySelector("#add-to-cart-button")
     .addEventListener("click", async () => {
       await addToCart(product.id);
-      showToast("✅ Added to Cart");
+      showToast("Added to cart");
     });
 
   document
@@ -95,7 +96,7 @@ export async function ProductDetails(productId) {
     .addEventListener("click", async () => {
       const added = await addToWishlist(product.id);
       showToast(
-        added ? "❤️ Added to Wishlist" : "❤️ Already in Wishlist",
+        added ? "Added to wishlist" : "Already in wishlist",
         added ? "success" : "error",
       );
     });
