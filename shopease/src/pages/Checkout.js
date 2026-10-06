@@ -1,3 +1,5 @@
+import { icon } from "../utils/icons";
+
 function getCart() {
   return JSON.parse(localStorage.getItem("cart")) || [];
 }
@@ -22,7 +24,7 @@ export function Checkout() {
         <div class="text-center">
 
           <div class="text-6xl">
-            🛒
+            ${icon("cart","w-14 h-14 mx-auto text-blue-600")}
           </div>
 
           <h1 class="text-3xl font-bold mt-5">
@@ -57,11 +59,11 @@ export function Checkout() {
           href="#cart"
           class="text-blue-600 hover:underline"
         >
-          ← Back to Cart
+          ${icon("arrowLeft","w-4 h-4")} Back to Cart
         </a>
 
         <h1 class="text-4xl font-bold mt-5 mb-10">
-          Checkout 💳
+          Checkout
         </h1>
 
 
