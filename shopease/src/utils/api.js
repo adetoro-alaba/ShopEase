@@ -1,45 +1,31 @@
+import { products as localProducts } from "../Data/product";
+
 let cachedProducts = null;
 
 function getAdminEdits() {
-  return JSON.parse(localStorage.getItem("adminEdits")) || {};
+  try {
+    return JSON.parse(localStorage.getItem("adminEdits")) || {};
+  } catch {
+    return {};
+  }
 }
 
 function applyAdminEdits(products) {
   const edits = getAdminEdits();
   return products.map((product) => {
     const edit = edits[product.id];
-    return edit ? { ...product, price: edit.price } : product;
+    return edit ? { ...product, price: Number(edit.price) || product.price } : product;
   });
 }
 
 export async function fetchProducts() {
   if (!cachedProducts) {
-    try {
-      const response = await fetch("https://fakestoreapi.com/products");
-      if (!response.ok) {
-        throw new Error("Failed to fetch products");
-      }
-
-      const products = await response.json();
-      cachedProducts = products.map((product) => ({
-        id: product.id,
-        name: product.title,
-        price: Math.round(product.price * 100),
-        category: product.category,
-        rating: product.rating?.rate || 0,
-        image: product.image,
-        description: product.description,
-      }));
-    } catch (error) {
-      console.error(error);
-      return [];
-    }
+    cachedProducts = localProducts.map((product) => ({ ...product }));
   }
-
   return applyAdminEdits(cachedProducts);
 }
 
 export async function getProductById(productId) {
   const products = await fetchProducts();
-  return products.find((product) => product.id == productId);
+  return products.find((product) => String(product.id) === String(productId));
 }
