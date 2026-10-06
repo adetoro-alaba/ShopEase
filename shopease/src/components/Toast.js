@@ -1,4 +1,4 @@
-export function showToast(message, type = "success") {
+import { icon } from "../utils/icons";\n\nexport function showToast(message, type = "success") {
   const oldToast = document.querySelector("#shop-toast");
 
   if (oldToast) {
@@ -32,7 +32,7 @@ export function showToast(message, type = "success") {
 
   toast.innerHTML = `
     <span class="text-xl">
-      ${type === "success" ? "✓" : "!"}
+      ${icon(type === "success" ? "check" : "info", "w-5 h-5")}
     </span>
 
     <span>
